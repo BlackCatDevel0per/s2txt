@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v1
@@ -18,7 +18,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install pyinstaller
         pip install -r requirements.txt
-        python build\&setup_scripts\run_me.py
+        python build\&setup_scripts/run_me.py
     - name: build with pyinstaller
       run: |
         pyinstaller app.py
