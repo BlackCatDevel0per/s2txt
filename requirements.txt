@@ -5,4 +5,3 @@ logzero
 python-docx
 configparser
 SpeechRecognition
-vosk
