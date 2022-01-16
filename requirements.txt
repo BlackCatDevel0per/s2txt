@@ -1,0 +1,8 @@
+asyncqt
+awaits
+logger
+logzero
+python-docx
+configparser
+SpeechRecognition
+vosk
