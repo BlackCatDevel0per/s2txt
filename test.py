@@ -1,3 +1,4 @@
+# File for functions testing
 from s2txt import AppAPI as api
 from config import Config
 
