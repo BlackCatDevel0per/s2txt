@@ -29,6 +29,9 @@ jobs:
     - name: ZIP Files
       run: |
         zip -r pyinstaller_build.zip dist 
+    - name: show files 
+      run: |
+        ls -a
       
   release:
     needs: [build]
