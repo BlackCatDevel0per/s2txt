@@ -11,15 +11,29 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.8
+        
+    - name: Installing PyInstaller
+      run: pip install pyinstaller
+    
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pyinstaller
         pip install -r requirements.txt
         python build\&setup_scripts/run_me.py
+   
     - name: build with pyinstaller
       run: |
         pyinstaller app.py
 
-    - name: Show dir
-      run: ls -a
+    - name: ZIP Files
+      run: zip -r release.zip dist 
+      
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: taiki-e/create-gh-release-action@v1
+        env:
+          # (Required) GitHub token for creating GitHub Releases.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
