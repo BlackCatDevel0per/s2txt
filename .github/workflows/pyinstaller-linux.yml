@@ -13,7 +13,8 @@ jobs:
         python-version: 3.8
         
     - name: Installing PyInstaller
-      run: pip install pyinstaller
+      run: |
+        pip install pyinstaller
     
     - name: Install dependencies
       run: |
@@ -26,14 +27,16 @@ jobs:
         pyinstaller app.py
 
     - name: ZIP Files
-      run: zip -r release.zip dist 
+      run: |
+        zip -r pyinstaller_build.zip dist 
       
   release:
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: taiki-e/create-gh-release-action@v1
-        env:
-          # (Required) GitHub token for creating GitHub Releases.
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v1
+      - uses: pipe-cd/actions-gh-release@v2.2.0
+        with:
+          release_file: 'pyinstaller_build.zip'
+          token: ${{ secrets.GITHUB_TOKEN }}
     
