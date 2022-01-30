@@ -29,14 +29,13 @@ jobs:
     - name: ZIP Files
       run: |
         zip -r pyinstaller_build.zip dist 
+        ls /home/runner && echo 777 && ls /home/runner/work/s2txt/s2txt
       
   release:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        run: |
-          ls /home/runner && echo 777 && ls /home/runner/work/s2txt/s2txt
         uses: actions/checkout@v2
       - name: Publish Release
         uses: svenstaro/upload-release-action@v2
