@@ -36,11 +36,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        run: ls /home/runner && echo 777 && ls /home/runner/work/s2txt/s2txt
       - name: Publish Release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: /home/runner/work/s2txt/s2txt/pyinstaller_build.zip
+          file: /home/runner/pyinstaller_build.zip
           asset_name: pyinstaller_build.zip
           tag: ${{ github.ref }}
           overwrite: true
